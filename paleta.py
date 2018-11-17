@@ -18,9 +18,9 @@ def criar_paleta(inicio, fim):
     i=np.tile(SV,256)
 
     #Dando nova forma ao array
-    novoH=np.tile(h.reshape(256,1), PALETA)
-    novoS=np.tile(s.reshape(256,1), PALETA)
-    novoI=np.tile(i.reshape(256,1), PALETA)
+    novoH=np.tile(h.reshape((256,1)), PALETA)
+    novoS=np.tile(s.reshape((256,1)), PALETA)
+    novoI=np.tile(i.reshape((256,1)), PALETA)
 
     #converte para 8bits
     novoH=np.uint8(novoH)
@@ -33,8 +33,9 @@ def criar_paleta(inicio, fim):
 img2=np.zeros( (img.shape[0], img.shape[1],3 ))
 
 #gera paleta HSI
-paleta = criar_paleta(30,230)
-cv2.imshow('minha_paleta', paleta)
+paleta = criar_paleta(0,60)
+
+
 #percorrendo cores
 cores_paleta=paleta[:,0]
 img=cores_paleta[img]
@@ -42,7 +43,7 @@ img=cores_paleta[img]
 bgr_img=cv2.cvtColor(img, cv2.COLOR_HSV2BGR)
 bgr_paleta=cv2.cvtColor(paleta, cv2.COLOR_HSV2BGR)
 
-#cv2.imshow('Paleta de cores',bgr_paleta )
-#cv2.imshow('imagem Colorida',bgr_img )
+cv2.imshow('Paleta de cores',bgr_paleta )
+cv2.imshow('imagem Colorida',bgr_img )
 
 
