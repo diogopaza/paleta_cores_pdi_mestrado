@@ -1,10 +1,10 @@
 import cv2
 import numpy as np
-import unittest
+from matplotlib import pyplot as plt
 
 #importa a imagem original em tons de cinza passando parametro 0
 img = cv2.imread("militar.jpg",0)
-
+minha_img = img
 SV=180
 PALETA=200
 
@@ -26,6 +26,7 @@ def criar_paleta(inicio, fim):
     novoH=np.uint8(novoH)
     novoS=np.uint8(novoS)
     novoI=np.uint8(novoI)
+    #unindo os vetores para gerar a paleta
     minhaPaleta = np.dstack((np.dstack((novoH,novoS)), novoI))
     return minhaPaleta
 
@@ -43,7 +44,12 @@ img=cores_paleta[img]
 bgr_img=cv2.cvtColor(img, cv2.COLOR_HSV2BGR)
 bgr_paleta=cv2.cvtColor(paleta, cv2.COLOR_HSV2BGR)
 
-cv2.imshow('Paleta de cores',bgr_paleta )
-cv2.imshow('imagem Colorida',bgr_img )
+cv2.imshow("original", minha_img)
+cv2.imshow("paleta", bgr_paleta)
+cv2.imshow("Imagem de Saida", bgr_img)
+
+
+
+
 
 
