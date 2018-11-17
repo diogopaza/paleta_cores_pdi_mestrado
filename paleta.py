@@ -44,6 +44,9 @@ img=cores_paleta[img]
 bgr_img=cv2.cvtColor(img, cv2.COLOR_HSV2BGR)
 bgr_paleta=cv2.cvtColor(paleta, cv2.COLOR_HSV2BGR)
 
+cv2.imwrite("paleta.jpg", bgr_paleta)
+
+#imagens finais
 cv2.imshow("original", minha_img)
 cv2.imshow("paleta", bgr_paleta)
 cv2.imshow("Imagem de Saida", bgr_img)
