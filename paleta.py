@@ -46,7 +46,7 @@ print(img_cores_paleta.shape)
 #percorrendo cores
 cores_paleta=paleta[:,0]
 img_cores_paleta=cores_paleta[img[:120]]
-print(cores_paleta.shape)
+print(img.shape)
 bgr_cinza=cv2.cvtColor(imagem_cinza, cv2.COLOR_GRAY2BGR)
 bgr_img=cv2.cvtColor(img, cv2.COLOR_HSV2BGR)
 #saida=cv2.cvtColor(img_cores_paleta, cv2.COLOR_HSV2BGR)
