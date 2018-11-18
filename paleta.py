@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 #importa a imagem original em tons de cinza passando parametro 0
 img = cv2.imread("militar.jpg",0)
-minha_img = img
+
 SV=180
 PALETA=200
 
@@ -31,27 +31,50 @@ def criar_paleta(inicio, fim):
     return minhaPaleta
 
 #criando nova imagem com 3 canais 
-img2=np.zeros( (img.shape[0], img.shape[1],3 ))
+imagem_colorida=np.zeros( (img.shape[0], img.shape[1],3 ))
+imagem_cinza=img
 
 #gera paleta HSI
 paleta = criar_paleta(0,60)
-
+cores_paleta=paleta[:,0]
+img=cores_paleta[img]
+for i in range(120,481,120):
+    img_cores_paleta=cores_paleta[img[:i]]
+    
+print(img_cores_paleta.shape)
 
 #percorrendo cores
 cores_paleta=paleta[:,0]
-img=cores_paleta[img]
-
+img_cores_paleta=cores_paleta[img[:120]]
+print(cores_paleta.shape)
+bgr_cinza=cv2.cvtColor(imagem_cinza, cv2.COLOR_GRAY2BGR)
 bgr_img=cv2.cvtColor(img, cv2.COLOR_HSV2BGR)
-bgr_paleta=cv2.cvtColor(paleta, cv2.COLOR_HSV2BGR)
+#saida=cv2.cvtColor(img_cores_paleta, cv2.COLOR_HSV2BGR)
 
-cv2.imwrite("paleta.jpg", bgr_paleta)
+#cv2.imwrite("paleta.jpg", bgr_paleta)
 
 #imagens finais
-cv2.imshow("original", minha_img)
-cv2.imshow("paleta", bgr_paleta)
-cv2.imshow("Imagem de Saida", bgr_img)
+
+#cv2.imshow("cinza", imagem_cinza)
+
+#cv2.imshow("Imagem de Saida", bgr_img)
+bgr_cinza[:120] =  bgr_img[:120]
+cv2.imwrite("cinza_120.jpg", bgr_cinza)
+bgr_cinza[:240] =  bgr_img[:240]
+cv2.imwrite("cinza_240.jpg", bgr_cinza)
+bgr_cinza[:360] =  bgr_img[:360]
+cv2.imwrite("cinza_360.jpg", bgr_cinza)
+bgr_cinza[:480] =  bgr_img[:480]
+cv2.imwrite("cinza_480.jpg", bgr_cinza)
 
 
+"""
+for i in range(120,481,120):
+    bgr_cinza[:i] =  bgr_img[:i]
+    cv2.imwrite("atualizando", bgr_cinza)
+
+#cv2.imshow("paleta",bgr_cinza )
+"""
 
 
 
